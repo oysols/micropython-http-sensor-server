@@ -8,7 +8,7 @@ HTTP/1.0 200 OK
 
 I have been alive for {} s.
 
-The temperature is {} C.
+The temperature is {}.{} C.
 
 Best regards,
 WiPy
@@ -22,9 +22,9 @@ def answer_request(client_socket, client_addr):
         if h == b"" or h == b"\r\n" or h == None:
             break
         print(h)
-    temperature = temp.get_temp(10000,0)
+    temperature, temperature_decimal = temp.get_temp(10000,0)
     alive = time.time() - 473385595
-    data = CONTENT.format(alive, temperature)
+    data = CONTENT.format(alive, temperature, temperature_decimal)
     client_socket.setblocking(True)
     client_socket.write(data)
     client_socket.setblocking(False)
