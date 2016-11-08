@@ -8,3 +8,13 @@ The WiPy does not support floating point operations, so a logarithmic lookup tab
 
 The code has been tested and calibrated with a scavenged temperature sensor from a broken outdoor thermometer.
 
+Example output:
+
+```
+I have been alive for 6703 s.
+
+The temperature is -5.5 C.
+
+Best regards,
+WiPy
+```
