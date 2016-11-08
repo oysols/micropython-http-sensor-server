@@ -47,24 +47,26 @@ def main():
     # while waiting for request.
     s.setblocking(False)
 
-    while True:
-        """Main loop"""
-        client_socket, client_addr = None, None
-        try: # Will fail if allready accepted socket
-            client_socket, client_addr = s.accept()
-        except:
-            pass
-
-        if client_socket:
-            try: # Improve stability
-                answer_request(client_socket, client_addr)
+    try:
+        while True:
+            """Main loop"""
+            client_socket, client_addr = None, None
+            try: # Will fail if allready accepted socket
+                client_socket, client_addr = s.accept()
             except:
-                try:
-                    # Closing socket will fail if
-                    # socket is allready closed.
-                    client_socket.close_socket()
-                except:
-                    pass
-        time.sleep_ms(10)
+                pass
 
+            if client_socket:
+                try: # Improve stability
+                    answer_request(client_socket, client_addr)
+                except:
+                    try:
+                        # Closing socket will fail if
+                        # socket is allready closed.
+                        client_socket.close_socket()
+                    except:
+                        pass
+            time.sleep_ms(10)
+    except:
+        s.close()
 main()
