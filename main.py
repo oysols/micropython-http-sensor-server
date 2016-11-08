@@ -25,7 +25,7 @@ def answer_request(client_socket, client_addr):
         if h == b"" or h == b"\r\n" or h == None:
             break
         print(h)
-    temperature, temperature_decimal = temp.get_temp(10000,0)
+    temperature, temperature_decimal = temp.get_temp()
     alive = time.time() - 473385595
     data = CONTENT.format(alive, temperature, temperature_decimal)
     # Block to make sure all data is written before closing socket.
